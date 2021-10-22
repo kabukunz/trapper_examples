@@ -1,3 +1,4 @@
-[submodule "cmake"]
+[submodule "trapper"]
 	path = cmake
 	url = https://github.com/kabukunz/trapper.git
+    hash = v1.0
