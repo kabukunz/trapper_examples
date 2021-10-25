@@ -12,8 +12,8 @@ include(Trapper)
 # MMG: download, source, build, and use installed tool
 
 # options
-set(LIBMMG2D_STATIC ON CACHE STRING "MMG STATIC LIBRARY" FORCE)
-set(LIBMMG2D_SHARED OFF CACHE STRING "MMG SHARED LIBRARY" FORCE)
+set(LIBMMG2D_STATIC OFF CACHE STRING "MMG STATIC LIBRARY" FORCE)
+set(LIBMMG2D_SHARED ON CACHE STRING "MMG SHARED LIBRARY" FORCE)
 set(USE_SCOTCH ON CACHE BOOL "USE_SCOTCH" FORCE)
 
 trapper_add_package(
@@ -21,10 +21,11 @@ trapper_add_package(
     https://github.com/MmgTools/mmg.git
     379209a9bb9b52df5e7a6ca08ae366bf1991960f
     
-    TOOL_OPTIONS
+    PACKAGE_OPTIONS
+        -DLIBMMG2D_STATIC=${LIBMMG2D_STATIC}
+        -DLIBMMG2D_SHARED=${LIBMMG2D_SHARED}
         -DUSE_SCOTCH=${USE_SCOTCH}
-        -DUSE_ELAS=${USE_ELAS}
-        -DUSE_VTK=${USE_VTK}
+    VERBOSE
 
     SOURCE_DIR "${CMAKE_SOURCE_DIR}/thirdparty"
     )
