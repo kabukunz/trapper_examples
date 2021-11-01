@@ -10,13 +10,12 @@ include(Trapper)
 
 # IMGUI: download needed prebuilt binaries, and just use it
 
-trapper_add_package(
-    glad
-    https://github.com/Dav1dde/glad.git
-    v0.1.34
-    SKIP_INSTALL
-    VERBOSE
-    )
+# trapper_add_package(
+#     glad
+#     https://github.com/Dav1dde/glad.git
+#     v0.1.34
+#     VERBOSE
+#     )
 
 # NOTE: there's no package from this download. Resorting to use build dir to find libraries
 
@@ -53,6 +52,9 @@ trapper_add_package(
 # set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 
+
+
+
 trapper_add_package(
     glfw3
     https://github.com/glfw/glfw.git
@@ -61,6 +63,7 @@ trapper_add_package(
     )
 
 
+# https://stackoverflow.com/questions/34795816/hinting-findname-cmake-files-with-a-custom-directory
 # adding package to search
 list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
 
@@ -74,6 +77,21 @@ find_package(glfw3 3.3.6 REQUIRED)
 
 # stb does not have a CMake build, but is header-only 1
 # find_path(STB_INCLUDE_DIRS "stb.h")
+
+trapper_add_package(
+    imgui-cmake
+    https://github.com/kabukunz/imgui-cmake.git
+    2b3cb7c02bc5ae20d90ae885adf66630d02bb80f
+    PACKAGE_OPTIONS -DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}
+    
+    VERBOSE
+    )
+
+
+
+
+
+
 
 ## Create main executable
 add_executable(main ImGuiBuilder/ImGuiBuilder/main.cpp)
