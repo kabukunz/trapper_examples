@@ -2,31 +2,28 @@ cmake_minimum_required(VERSION 3.14)
 
 project(imgui_client LANGUAGES C CXX)
 
-# list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/trapper")
-list(APPEND CMAKE_MODULE_PATH ../../../cmake)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/trapper")
 
 include(Trapper)
-
-# we need install dir for find package
-# set(TRAPPER_INSTALL_DIR "${CMAKE_SOURCE_DIR}/prebuilt" CACHE PATH "")
 
 # ----------------------------------------------------------------------------------------------------
 
 # IMGUI: download needed prebuilt binaries, and just use it
 
 trapper_add_package(
-    TOOL glad
-    LOCATION https://github.com/Dav1dde/glad.git
-    HASHING v0.1.34
+    glad
+    https://github.com/Dav1dde/glad.git
+    v0.1.34
+    SKIP_INSTALL
     VERBOSE
     )
 
 # NOTE: there's no package from this download. Resorting to use build dir to find libraries
 
-set(glad_DIR ${TRAPPER_INSTALL_DIR}/lib/cmake/glad CACHE STRING "glad_DIR")
+# set(glad_DIR ${TRAPPER_INSTALL_DIR}/lib/cmake/glad CACHE STRING "glad_DIR")
 
-# find package
-find_package(glad CONFIG REQUIRED)
+# # find package
+# find_package(glad CONFIG REQUIRED)
 
 # GLAD_LIBRARIES
 # GLAD_INCLUDE_DIRS
@@ -45,10 +42,21 @@ find_package(glad CONFIG REQUIRED)
 #     message(STATUS "MMG2D LIBRARY DIRS = ${MMG2D_LIBRARY_DIRS}")
 # endif()
 
-add_executable(${PROJECT_NAME} ${TRAPPER_SOURCE_DIR}/example/c/simple.c)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${TRAPPER_INSTALL_DIR}/include)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC glad::glad)
+# add_executable(${PROJECT_NAME} ${TRAPPER_SOURCE_DIR}/example/c/simple.c)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+# target_include_directories(${PROJECT_NAME} PUBLIC ${TRAPPER_INSTALL_DIR}/include)
+
+# target_link_libraries(${PROJECT_NAME} PUBLIC glad::glad)
+
+# set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+
+trapper_add_package(
+    glfw3
+    https://github.com/glfw/glfw.git
+    3.3-stable
+    VERBOSE
+    )
+

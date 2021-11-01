@@ -14,10 +14,11 @@ rmdir /S /Q -rf thirdparty
 
 @REM Build default examples
 
-call .\examples\default\mmg\build.bat
+@REM call .\examples\default\mmg\build.bat
 @REM call build_embree.bat
 @REM call build_dlib.bat
 @REM call build_polyscope.bat
+.\examples\default\imgui\build.bat
 
 @REM Build advanced examples
 

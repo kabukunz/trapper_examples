@@ -2,3 +2,11 @@
 	url = https://github.com/kabukunz/trapper.git
     hash = 3ee0aedb66390f9abd82543b9227c05e1b7edbba
 	path = trapper
+[submodule "examples/default/imgui/imgui-cmake"]
+	path = examples/default/imgui/imgui-cmake
+	url = https://github.com/kabukunz/imgui-cmake.git
+    hash = dfdb22662ae0df96776033e9b8b5034ff5fb0eba
+[submodule "examples/default/imgui/ImGuiBuilder"]
+	path = examples/default/imgui/ImGuiBuilder
+	url = https://github.com/kabukunz/ImGuiBuilder.git
+    hash = 1f4a4b74b88544026ef816886414cc8e6019a7d3
