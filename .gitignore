@@ -1,1 +1,11 @@
 build
+
+.mycache
+mybuild
+myprebuilt
+mythirdparty
+
+.cache
+build
+prebuilt
+thirdparty
