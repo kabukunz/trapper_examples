@@ -60,3 +60,31 @@ trapper_add_package(
     VERBOSE
     )
 
+
+# adding package to search
+list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
+
+
+## Find dependencies
+find_package(glfw3 3.3.6 REQUIRED)
+# find_package(glad REQUIRED)
+# find_package(glm REQUIRED)
+# find_package(freetype REQUIRED)
+# find_package(imgui REQUIRED)
+
+# stb does not have a CMake build, but is header-only 1
+# find_path(STB_INCLUDE_DIRS "stb.h")
+
+## Create main executable
+add_executable(main ImGuiBuilder/ImGuiBuilder/main.cpp)
+
+target_include_directories(main 
+  PRIVATE 
+    "${CMAKE_CURRENT_LIST_DIR}/ImGuiBuilder/ImGuiBuilder"
+)
+
+target_compile_definitions(main PRIVATE _OPENGL2=1)
+
+target_link_libraries(main PRIVATE
+    glfw
+)
