@@ -79,18 +79,30 @@ find_package(glfw3 3.3.6 REQUIRED)
 # find_path(STB_INCLUDE_DIRS "stb.h")
 
 trapper_add_package(
-    imgui-cmake
+    imgui
     https://github.com/kabukunz/imgui-cmake.git
-    2b3cb7c02bc5ae20d90ae885adf66630d02bb80f
-    PACKAGE_OPTIONS -DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}
+    b3ace0f266416c54f3e1cfa527e14c1e8918a333
+    PACKAGE_OPTIONS 
+        -DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}
+        -DIMGUI_IMPL_GLFW3_OPENGL3=${IMGUI_IMPL_GLFW3_OPENGL3}
     
     VERBOSE
     )
 
+list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
 
 
+# include(${TRAPPER_INSTALL_DIR}/lib/cmake/imgui.cmake)
+
+# add_library(imgui STATIC IMPORTED)
+# set_property(TARGET imgui PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/lib/imgui.lib")
+
+find_package(imgui 1.7.1 EXACT)
 
 
+# CHECK: imgui has glfw inside?
+# include(CMakeFindDependencyMacro)
+# find_dependency(glfw3 3.3)
 
 
 ## Create main executable
@@ -99,10 +111,14 @@ add_executable(main ImGuiBuilder/ImGuiBuilder/main.cpp)
 target_include_directories(main 
   PRIVATE 
     "${CMAKE_CURRENT_LIST_DIR}/ImGuiBuilder/ImGuiBuilder"
+    # "${CMAKE_CURRENT_LIST_DIR}/ImGuiBuilder/ImGuiBuilder/third-party/ImGui"
+    
+    
 )
 
 target_compile_definitions(main PRIVATE _OPENGL2=1)
 
 target_link_libraries(main PRIVATE
     glfw
+    imgui::imgui
 )
