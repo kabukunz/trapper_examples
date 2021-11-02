@@ -38,7 +38,7 @@ trapper_add_package(
     )
 
 # imgui
-find_package(imgui 1.71 EXACT REQUIRED)
+find_package(imgui 1.71 EXACT CONFIG REQUIRED)
 
 # LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
 
