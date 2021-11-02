@@ -30,7 +30,9 @@ find_package(glfw3 3.3.6 REQUIRED)
 trapper_add_package(
     imgui-cmake
     https://github.com/kabukunz/imgui-cmake.git
-    54d8443129b1dc68952707a1a14c0815ed737262
+    0098d557617abb8c4cecfc1fec2702271458df50
+
+    PACKAGE_OPTIONS "-DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}"
 
     SOURCE_DIR "${CMAKE_SOURCE_DIR}/external"
     
