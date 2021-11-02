@@ -81,10 +81,10 @@ find_package(glfw3 3.3.6 REQUIRED)
 trapper_add_package(
     imgui
     https://github.com/kabukunz/imgui-cmake.git
-    b3ace0f266416c54f3e1cfa527e14c1e8918a333
-    PACKAGE_OPTIONS 
-        -DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}
-        -DIMGUI_IMPL_GLFW3_OPENGL3=${IMGUI_IMPL_GLFW3_OPENGL3}
+    9631f9e949ed78c39654bb439c30f9f397184150
+    # PACKAGE_OPTIONS 
+    #     -DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}
+    #     -DIMGUI_IMPL_GLFW3_OPENGL3=${IMGUI_IMPL_GLFW3_OPENGL3}
     
     VERBOSE
     )
@@ -116,7 +116,7 @@ target_include_directories(main
     
 )
 
-target_compile_definitions(main PRIVATE _OPENGL2=1)
+# target_compile_definitions(main PRIVATE _OPENGL2=1)
 
 target_link_libraries(main PRIVATE
     glfw
