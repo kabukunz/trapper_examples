@@ -55,21 +55,21 @@ include(Trapper)
 
 
 
-# trapper_add_package(
-#     glfw3
-#     https://github.com/glfw/glfw.git
-#     3.3-stable
-#     VERBOSE
-#     )
+trapper_add_package(
+    glfw3
+    https://github.com/glfw/glfw.git
+    3.3-stable
+    VERBOSE
+    )
 
 
-# # https://stackoverflow.com/questions/34795816/hinting-findname-cmake-files-with-a-custom-directory
-# # adding package to search
-# list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
+# https://stackoverflow.com/questions/34795816/hinting-findname-cmake-files-with-a-custom-directory
+# adding package to search
+list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
 
 
-# ## Find dependencies
-# find_package(glfw3 3.3.6 REQUIRED)
+## Find dependencies
+find_package(glfw3 3.3.6 REQUIRED)
 
 
 
@@ -84,12 +84,12 @@ include(Trapper)
 trapper_add_package(
     imgui-cmake
     https://github.com/kabukunz/imgui-cmake.git
-    9631f9e949ed78c39654bb439c30f9f397184150
+    54d8443129b1dc68952707a1a14c0815ed737262
 
     SOURCE_DIR "${CMAKE_SOURCE_DIR}/external"
     # PACKAGE_OPTIONS 
-    #     -DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}
-    #     -DIMGUI_IMPL_GLFW3_OPENGL3=${IMGUI_IMPL_GLFW3_OPENGL3}
+        # -DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}
+        # -DIMGUI_IMPL_GLFW3_OPENGL3=${IMGUI_IMPL_GLFW3_OPENGL3}
     
     VERBOSE
     )
@@ -109,19 +109,13 @@ find_package(imgui 1.7.1 EXACT)
 # include(CMakeFindDependencyMacro)
 # find_dependency(glfw3 3.3)
 
+# LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
 
 ## Create main executable
 
 # cl /nologo /Zi /MD /I .. /I ..\.. /I ..\libs\glfw\include /I ..\libs\gl3w *.cpp ..\imgui_impl_glfw.cpp ..\imgui_impl_opengl3.cpp ..\..\imgui*.cpp ..\libs\gl3w\GL\gl3w.c /FeDebug/example_glfw_opengl3.exe /FoDebug/ /link /LIBPATH:..\libs\glfw\lib-vc2010-32 glfw3.lib opengl32.lib gdi32.lib shell32.lib
 
 set(IMGUI_EXAMPLES "${TRAPPER_SOURCE_DIR}/imgui/examples")
-
-
-
-# ..\imgui_impl_glfw.cpp 
-# ..\imgui_impl_opengl3.cpp 
-# ..\libs\gl3w\GL\gl3w.c
-
 
 add_executable(${PROJECT_NAME} 
     "${IMGUI_EXAMPLES}/imgui_impl_glfw.cpp"
@@ -132,12 +126,18 @@ add_executable(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME} PUBLIC 
     "${IMGUI_EXAMPLES}"
-    "${IMGUI_EXAMPLES}/libs/glfw/include"
+    # "${IMGUI_EXAMPLES}/libs/glfw/include"
     "${IMGUI_EXAMPLES}/libs/gl3w"
     )
 
+# target_link_libraries(${PROJECT_NAME} PUBLIC
+#     "${IMGUI_EXAMPLES}/libs/glfw/lib-vc2010-64/glfw3.lib"
+#     imgui::imgui
+#     opengl32
+# )
+
 target_link_libraries(${PROJECT_NAME} PUBLIC
-    "${IMGUI_EXAMPLES}/libs/glfw/lib-vc2010-64/glfw3.lib"
+    glfw
     imgui::imgui
     opengl32
 )
