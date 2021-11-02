@@ -18,11 +18,9 @@ trapper_add_package(
     )
 
 # https://stackoverflow.com/questions/34795816/hinting-findname-cmake-files-with-a-custom-directory
-# adding package to search
 
 # add prebuilt config path to library search
 list(APPEND CMAKE_PREFIX_PATH ${TRAPPER_INSTALL_DIR})
-message(WARNING "TRAPPER_INSTALL_DIR ${TRAPPER_INSTALL_DIR}")
 
 # glfw3
 find_package(glfw3 3.3.6 REQUIRED)
@@ -30,7 +28,7 @@ find_package(glfw3 3.3.6 REQUIRED)
 trapper_add_package(
     imgui-cmake
     https://github.com/kabukunz/imgui-cmake.git
-    0098d557617abb8c4cecfc1fec2702271458df50
+    962223536a13dee63d06adb6a92a08ab47d7df35
 
     PACKAGE_OPTIONS "-DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}"
 
@@ -39,10 +37,8 @@ trapper_add_package(
     VERBOSE
     )
 
-message(WARNING "TRAPPER_INSTALL_DIR ${TRAPPER_INSTALL_DIR}")
-
 # imgui
-find_package(imgui 1.7.1 EXACT REQUIRED)
+find_package(imgui 1.71 EXACT REQUIRED)
 
 # LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
 
