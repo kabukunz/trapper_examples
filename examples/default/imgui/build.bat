@@ -17,11 +17,4 @@ cmake -B build -G "Ninja" ^
  ^
 -DIMGUI_WITH_IMPL=OFF
 
-
-@REM -DLIBMMG2D_STATIC=ON ^
-@REM -DLIBMMG2D_SHARED=OFF ^
-@REM -DUSE_SCOTCH=OFF ^
-@REM -DUSE_ELAS=OFF ^
-@REM -DUSE_VTK=OFF
-
 cmake --build build

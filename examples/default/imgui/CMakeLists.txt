@@ -71,7 +71,7 @@ list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
 ## Find dependencies
 find_package(glfw3 3.3.6 REQUIRED)
 
-
+# find_package(OpenGL REQUIRED)
 
 # find_package(glad REQUIRED)
 # find_package(glm REQUIRED)
@@ -139,5 +139,5 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME} PUBLIC
     glfw
     imgui::imgui
-    opengl32
+    ${OPENGL_LIBRARIES}
 )
