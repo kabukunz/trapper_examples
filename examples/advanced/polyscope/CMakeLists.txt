@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 project(polyscope_client LANGUAGES C CXX)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/trapper")
+list(APPEND CMAKE_MODULE_PATH ${TRAPPER_DIR})
 
 # ----------------------------------------------------------------------------------------------------
 
