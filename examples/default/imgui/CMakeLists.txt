@@ -21,7 +21,8 @@ trapper_add_package(
 # adding package to search
 
 # add prebuilt config path to library search
-list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
+list(APPEND CMAKE_PREFIX_PATH ${TRAPPER_INSTALL_DIR})
+message(WARNING "TRAPPER_INSTALL_DIR ${TRAPPER_INSTALL_DIR}")
 
 # glfw3
 find_package(glfw3 3.3.6 REQUIRED)
@@ -36,8 +37,10 @@ trapper_add_package(
     VERBOSE
     )
 
+message(WARNING "TRAPPER_INSTALL_DIR ${TRAPPER_INSTALL_DIR}")
+
 # imgui
-find_package(imgui 1.7.1 EXACT)
+find_package(imgui 1.7.1 EXACT REQUIRED)
 
 # LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
 
