@@ -28,7 +28,7 @@ find_package(glfw3 3.3.6 REQUIRED)
 trapper_add_package(
     imgui-cmake
     https://github.com/kabukunz/imgui-cmake.git
-    962223536a13dee63d06adb6a92a08ab47d7df35
+    afd4b0e515ad8413752d18ce43418d01b47e406f
 
     PACKAGE_OPTIONS "-DIMGUI_WITH_IMPL=${IMGUI_WITH_IMPL}"
 
@@ -38,7 +38,7 @@ trapper_add_package(
     )
 
 # imgui
-find_package(imgui 1.71 EXACT CONFIG REQUIRED)
+find_package(imgui 1.76 EXACT CONFIG REQUIRED)
 
 # LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
 
