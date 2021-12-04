@@ -23,7 +23,14 @@ cmake -S . -B build \
 -DDOWNLOAD_EIGEN=OFF \
 -DCMAKE_BUILD_TYPE=Release \
 -DEigen3_DIR=/usr/local/share/eigen3/cmake \
--DPYTHON_EXECUTABLE=/Library/Frameworks/Python.framework/Versions/3.7/bin/python3 \
--DCMAKE_INSTALL_PREFIX=prebuilt
+-DPYTHON_EXECUTABLE=/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 
 cmake --build build
+
+# export PYBIND11_DIR=$(pwd)/examples/default/pybind11
+
+# export PYTHONPATH=$PYBIND11_DIR
+
+# python $PYBIND11_DIR/run.py
+
+# python $PYBIND11_DIR/main.py
