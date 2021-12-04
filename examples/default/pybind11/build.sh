@@ -21,7 +21,6 @@ cmake -S . -B build \
 -DPYBIND11_INSTALL=ON \
 -DPYBIND11_TEST=OFF \
 -DDOWNLOAD_EIGEN=OFF \
--DCMAKE_BUILD_TYPE=Release \
 -DEigen3_DIR=/usr/local/share/eigen3/cmake \
 -DPYTHON_EXECUTABLE=/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 
