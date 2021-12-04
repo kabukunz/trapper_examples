@@ -9,7 +9,7 @@ include(Trapper)
 
 # ----------------------------------------------------------------------------------------------------
 
-# MMG: download, source, build, and use installed tool
+# MMG: download, build, and use installed tool
 
 # options
 set(LIBMMG2D_STATIC OFF CACHE STRING "MMG STATIC LIBRARY" FORCE)

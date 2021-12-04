@@ -17,7 +17,8 @@
 # ./examples/default/mmg/build.sh
 # ./examples/default/embree/build.sh
 # ./examples/default/dlib/build.sh
-./examples/default/imgui/build.sh
+# ./examples/default/imgui/build.sh
+./examples/default/pybind11/build.sh
 # ./build_polyscope.sh
 
 # build advanced examples
