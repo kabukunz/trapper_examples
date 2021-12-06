@@ -4,6 +4,9 @@
 # pybind11
 # 
 
+export PYTHON37=/Library/Frameworks/Python.framework/Versions/3.7/bin
+export PYTHON_EXECUTABLE=${PYTHON37}/python3
+
 cmake -S . -B build \
 -DTRAPPER_BUILD_DEFAULT_EXAMPLES=OFF \
 -DTRAPPER_BUILD_ADVANCED_EXAMPLES=OFF \
@@ -22,14 +25,13 @@ cmake -S . -B build \
 -DPYBIND11_TEST=OFF \
 -DDOWNLOAD_EIGEN=OFF \
 -DEigen3_DIR=/usr/local/share/eigen3/cmake \
--DPYTHON_EXECUTABLE=/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+-DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
 
 cmake --build build
 
-# export PYBIND11_DIR=$(pwd)/examples/default/pybind11
+${PYTHON_EXECUTABLE} $(pwd)/examples/default/pybind11/run.py
+${PYTHON_EXECUTABLE} $(pwd)/examples/default/pybind11/main.py
 
-# export PYTHONPATH=$PYBIND11_DIR
+# TODO: download eigen
+# TODO: download python37
 
-# python $PYBIND11_DIR/run.py
-
-# python $PYBIND11_DIR/main.py
