@@ -10,13 +10,14 @@ include(Trapper)
 
 # pybind11
 
+# NOTE: needed when taking windows paths verbatim
+string(REPLACE "\\" "/" PYTHON_EXECUTABLE ${PYTHON_EXECUTABLE})
+string(REPLACE "\\" "/" Eigen3_DIR ${Eigen3_DIR})
+
 trapper_add_package(
     pybind11
     https://github.com/pybind/pybind11.git
     v2.8.1
-    
-    # SOURCE_DIR ${VIEWER_EXTERNAL}
-    # INSTALL_DIR ${VIEWER_PREBUILT}
     
     SKIP_BUILD
 
@@ -45,29 +46,3 @@ set_target_properties(binder PROPERTIES
     OUTPUT_NAME binder
     LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
-
-
-# add_executable(${PROJECT_NAME} ${TRAPPER_SOURCE_DIR}/libexamples/mmg2d/adaptation_example0/example0_b/main.c)
-
-# target_include_directories(${PROJECT_NAME} PUBLIC ${MMG2D_INCLUDE_DIRS})
-
-# target_link_libraries(${PROJECT_NAME} PUBLIC ${MMG2D_LIBRARIES})
-
-# TBD
-
-# ``pybind11_FOUND``
-#   true if pybind11 and all required components found on the system
-# ``pybind11_VERSION``
-#   pybind11 version in format Major.Minor.Release
-# ``pybind11_VERSION_TYPE``
-#   pybind11 version type (dev, release)
-# ``pybind11_INCLUDE_DIRS``
-#   Directories where pybind11 and python headers are located.
-# ``pybind11_INCLUDE_DIR``
-#   Directory where pybind11 headers are located.
-# ``pybind11_DEFINITIONS``
-#   Definitions necessary to use pybind11, namely USING_pybind11.
-# ``pybind11_LIBRARIES``
-#   Compile flags and python libraries (as needed) to link against.
-# ``pybind11_LIBRARY``
-#   Empty.

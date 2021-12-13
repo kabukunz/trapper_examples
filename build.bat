@@ -18,7 +18,8 @@
 @REM call build_embree.bat
 @REM call build_dlib.bat
 @REM call build_polyscope.bat
-.\examples\default\imgui\build.bat
+@REM .\examples\default\imgui\build.bat
+.\examples\default\pybind11\build.bat
 
 @REM Build advanced examples
 
