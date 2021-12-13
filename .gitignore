@@ -10,3 +10,6 @@ mythirdparty
 build
 prebuilt
 thirdparty
+
+*.zip
+*.tar.gz

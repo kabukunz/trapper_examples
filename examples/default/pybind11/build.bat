@@ -1,11 +1,17 @@
 
 del /S /Q .\build\CMakeCache.txt
 
-@REM curl -LO https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.zip
-@REM powershell -command "Expand-Archive eigen-3.3.9.zip external"
-
-set PYTHON37=%LOCALAPPDATA%\Programs\Python\Python37
+set TRAPPER_DIR=%CD%
+set PYTHON37=%TRAPPER_DIR%\external\python3.7.0
 set PYTHON_EXECUTABLE=%PYTHON37%\python.exe
+
+curl -LO https://gitlab.com/libeigen/eigen/-/archive/3.3.9/eigen-3.3.9.zip
+powershell -command "Expand-Archive eigen-3.3.9.zip external"
+
+@REM curl -LO https://www.python.org/ftp/python/3.7.0/python-3.7.0-embed-amd64.zip
+@REM powershell -command "Expand-Archive python-3.7.0-embed-amd64.zip %PYTHON37%"
+
+@REM set PYTHON37=%LOCALAPPDATA%\Programs\Python\Python37
 
 cmake -B build -G "Ninja" ^
 -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE ^
