@@ -5,6 +5,8 @@ project(mmgs_client LANGUAGES C CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${TRAPPER_EXAMPLES_TRAPPER_DIR})
 
+file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake cmake/Trapper.cmake)
+
 include(Trapper)
 
 # ----------------------------------------------------------------------------------------------------
