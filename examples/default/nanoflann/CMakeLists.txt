@@ -5,7 +5,7 @@ project(nanoflann_client LANGUAGES C CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${TRAPPER_EXAMPLES_TRAPPER_DIR})
 
-file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake cmake/Trapper.cmake)
+file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cmake "${CMAKE_MODULE_PATH}/Trapper.cmake")
 
 include(Trapper)
 
