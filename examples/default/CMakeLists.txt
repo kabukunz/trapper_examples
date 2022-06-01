@@ -18,3 +18,7 @@ endif()
 if(TRAPPER_BUILD_IMGUI_EXAMPLE)
     add_subdirectory(imgui)
 endif()
+
+if(TRAPPER_BUILD_NANOFLANN_EXAMPLE)
+    add_subdirectory(nanoflann)
+endif()
