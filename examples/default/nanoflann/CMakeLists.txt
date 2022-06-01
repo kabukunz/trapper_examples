@@ -11,7 +11,7 @@ include(Trapper)
 
 # ----------------------------------------------------------------------------------------------------
 
-# Nanoflann: header-only download, no build, just include
+# nanoflann: header-only download, no build, just include
 
 trapper_add_package(
     nanoflann
