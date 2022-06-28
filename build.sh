@@ -2,15 +2,9 @@
 
 rm -rf build
 
-# rm -rf .mycache
-# rm -rf mybuild
-# rm -rf myprebuilt
-# rm -rf mythirdparty
-
-# rm -rf .cache
-# rm -rf build
-# rm -rf prebuilt
-# rm -rf thirdparty
+rm -rf .cache
+rm -rf prebuilt
+rm -rf thirdparty
 
 # build default examples
 
@@ -19,8 +13,8 @@ rm -rf build
 # ./examples/default/dlib/build.sh
 # ./examples/default/imgui/build.sh
 # ./examples/default/pybind11/build.sh
-./examples/default/nanoflann/build.sh
-# ./build_polyscope.sh
+# ./examples/default/nanoflann/build.sh
+./examples/default/libzip/build.sh
 
 # build advanced examples
 
