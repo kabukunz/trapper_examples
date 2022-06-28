@@ -23,6 +23,10 @@ if(TRAPPER_BUILD_NANOFLANN_EXAMPLE)
     add_subdirectory(nanoflann)
 endif()
 
+if(TRAPPER_BUILD_DIRECTIONAL_EXAMPLE)
+    add_subdirectory(directional)
+endif()
+
 if(TRAPPER_BUILD_LIBZIP_EXAMPLE)
     add_subdirectory(libzip)
 endif()
