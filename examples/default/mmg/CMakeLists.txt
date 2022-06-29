@@ -29,7 +29,7 @@ trapper_add_package(
         -DUSE_SCOTCH=${USE_SCOTCH}
     VERBOSE
 
-    SOURCE_DIR "${CMAKE_SOURCE_DIR}/thirdparty"
+    SOURCE_DIR "${CMAKE_SOURCE_DIR}/external"
     )
 
 # ----------------------------------------------------------------------------------------------------

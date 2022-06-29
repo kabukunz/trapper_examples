@@ -6,7 +6,7 @@ rm -rf build
 
 rm -rf .cache
 rm -rf prebuilt
-rm -rf thirdparty
+rm -rf external
 
 # build default examples
 

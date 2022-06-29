@@ -12,7 +12,7 @@ include(Trapper)
 set(TRAPPER_DOWNLOAD_DIR "${CMAKE_SOURCE_DIR}/.mycache" CACHE PATH "")
 
 # tools source directory (if needed, i.e. already downloaded)
-set(TRAPPER_SOURCE_DIR "${CMAKE_SOURCE_DIR}/mythirdparty" CACHE PATH "")
+set(TRAPPER_SOURCE_DIR "${CMAKE_SOURCE_DIR}/myexternal" CACHE PATH "")
 
 # tools binary directory (mostly not needed)
 set(TRAPPER_BUILD_DIR "${CMAKE_SOURCE_DIR}/mybuild" CACHE PATH "")

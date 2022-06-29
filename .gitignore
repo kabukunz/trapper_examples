@@ -5,12 +5,12 @@ external
 .mycache
 mybuild
 myprebuilt
-mythirdparty
+myexternal
 
 .cache
 build
 prebuilt
-thirdparty
+external
 
 *.zip
 *.tar.gz

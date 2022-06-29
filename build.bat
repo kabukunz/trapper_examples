@@ -5,12 +5,12 @@
 @REM rmdir /S /Q -rf .mycache
 @REM rmdir /S /Q -rf mybuild
 @REM rmdir /S /Q -rf myprebuilt
-@REM rmdir /S /Q -rf mythirdparty
+@REM rmdir /S /Q -rf myexternal
 
 @REM rmdir /S /Q -rf .cache
 @REM rmdir /S /Q -rf build
 @REM rmdir /S /Q -rf prebuilt
-@REM rmdir /S /Q -rf thirdparty
+@REM rmdir /S /Q -rf external
 
 @REM Build default examples
 

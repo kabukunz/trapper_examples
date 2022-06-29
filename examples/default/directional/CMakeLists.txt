@@ -19,7 +19,7 @@ trapper_add_package(directional
 
     HEADER_ONLY
 
-    SOURCE_DIR "${CMAKE_SOURCE_DIR}/thirdparty"
+    SOURCE_DIR "${CMAKE_SOURCE_DIR}/external"
 
     VERBOSE
 )
