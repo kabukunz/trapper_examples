@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -rf cmake
+
 rm -rf build
 
 rm -rf .cache

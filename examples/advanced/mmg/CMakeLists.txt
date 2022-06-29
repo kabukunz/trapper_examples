@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 
 project(mmgs_client LANGUAGES C CXX)
 
-list(APPEND CMAKE_MODULE_PATH ${TRAPPER_EXAMPLES_TRAPPER_DIR})
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 include(Trapper)
 
