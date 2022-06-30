@@ -16,8 +16,9 @@ rm -rf external
 # ./examples/default/imgui/build.sh
 # ./examples/default/pybind11/build.sh
 # ./examples/default/nanoflann/build.sh
+# ./examples/default/directional/build.sh
 # ./examples/default/libzip/build.sh
-./examples/default/directional/build.sh
+./examples/default/libzippp/build.sh
 
 # build advanced examples
 
