@@ -122,9 +122,31 @@ target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
 
 set(LIBZIPPP_LOCATION ${LIBZIPPP_SOURCE_DIR})
 
+# get findLIBZIP.CMake
+# list(APPEND CMAKE_MODULE_PATH "${LIBZIPPP_SOURCE_DIR}/cmake")
+
 trapper_add_package(libzippp
     ${LIBZIPPP_LOCATION}
     NONE
 
+    PACKAGE_OPTIONS
+        -DLIBZIPPP_BUILD_TESTS=OFF
+
     VERBOSE
     )
+
+# set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/share/libzippp")
+
+# find_package(libzippp CONFIG 3.0 REQUIRED)
+# # find_package(libzippp 3.0 REQUIRED)
+
+# set(PROJECT_STEP libzippp_client)
+
+# add_executable(${PROJECT_STEP} "${LIBZIPPP_SOURCE_DIR}/tests/tests.cpp")
+
+# target_include_directories(${PROJECT_STEP} PUBLIC ${libzippp_INCLUDE_DIRS})
+
+# target_link_libraries(${PROJECT_STEP} PRIVATE libzippp::libzippp)
+
+
+
