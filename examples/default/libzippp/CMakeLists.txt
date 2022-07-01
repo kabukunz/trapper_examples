@@ -34,30 +34,30 @@ trapper_add_package(libzippp
 
 # ----------------------------------------------------------------------------------------------------
 
-# set(ZLIB_LOCATION "${LIBZIPPP_SOURCE_DIR}/libzippp/lib/zlib-1.2.12")
+set(ZLIB_LOCATION "${LIBZIPPP_SOURCE_DIR}/libzippp/lib/zlib-1.2.12")
 
-# trapper_add_package(zlib
-#     ${ZLIB_LOCATION}
-#     NONE
+trapper_add_package(zlib
+    ${ZLIB_LOCATION}
+    NONE
 
-#     VERBOSE
-#     )
+    VERBOSE
+    )
 
-# # https://stackoverflow.com/questions/44487053/set-pkg-config-path-in-cmake
-# set(ENV{PKG_CONFIG_PATH} "${TRAPPER_INSTALL_DIR}/share/pkgconfig")
+# https://stackoverflow.com/questions/44487053/set-pkg-config-path-in-cmake
+set(ENV{PKG_CONFIG_PATH} "${TRAPPER_INSTALL_DIR}/share/pkgconfig")
 
-# # https://stackoverflow.com/questions/29191855/what-is-the-proper-way-to-use-pkg-config-from-cmake
-# find_package(PkgConfig REQUIRED)
+# https://stackoverflow.com/questions/29191855/what-is-the-proper-way-to-use-pkg-config-from-cmake
+find_package(PkgConfig REQUIRED)
 
-# pkg_search_module(zlib REQUIRED zlib)
+pkg_search_module(zlib REQUIRED zlib)
 
-# set(PROJECT_STEP zlib_client)
+set(PROJECT_STEP zlib_client)
 
-# add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/example.c")
+add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/example.c")
 
-# target_include_directories(${PROJECT_STEP} PUBLIC ${zlib_INCLUDE_DIRS})
+target_include_directories(${PROJECT_STEP} PUBLIC ${zlib_INCLUDE_DIRS})
 
-# target_link_libraries(${PROJECT_STEP} PUBLIC ${zlib_LIBRARIES})
+target_link_libraries(${PROJECT_STEP} PUBLIC ${zlib_LIBRARIES})
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -93,12 +93,9 @@ set(PROJECT_STEP libzip_client)
 
 add_executable(${PROJECT_STEP} "${LIBZIP_LOCATION}/examples/in-memory.c")
 
+get_target_property(libzip_INCLUDE_DIRS libzip::zip INTERFACE_INCLUDE_DIRECTORIES)
+
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
-target_link_libraries(${PROJECT_STEP} PUBLIC ${libzip_LIBRARIES})
+target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
 
-
-
-# add_executable(in-memory in-memory.c)
-# target_link_libraries(in-memory zip)
-# target_include_directories(in-memory PRIVATE ${PROJECT_SOURCE_DIR}/lib ${PROJECT_BINARY_DIR})
