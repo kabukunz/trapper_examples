@@ -11,10 +11,11 @@ include(Trapper)
 
 # ----------------------------------------------------------------------------------------------------
 
-# libzippp: download and build
+# libzippp: download the special windows package with zlib and libzip dependencies, build and install them,
+# and finally build libzippp on top of them
 
 #
-# libzippp
+# libzippp download
 #
 
 set(LIBZIPPP_LOCATION "https://github.com/ctabin/libzippp/releases/download/libzippp-v5.1-1.8.0/libzippp-5.1-1.8.0-windows-ready_to_compile.zip")
@@ -32,9 +33,16 @@ trapper_add_package(libzippp
     VERBOSE
     )
 
+set(LIBZIPPP_SOURCE_DIR "${TRAPPER_SOURCE_DIR}")
+message(WARNING "LIBZIPPP_SOURCE_DIR ${LIBZIPPP_SOURCE_DIR}")
+
 # ----------------------------------------------------------------------------------------------------
 
-set(ZLIB_LOCATION "${LIBZIPPP_SOURCE_DIR}/libzippp/lib/zlib-1.2.12")
+#
+# zlib
+#
+
+set(ZLIB_LOCATION "${LIBZIPPP_SOURCE_DIR}/lib/zlib-1.2.12")
 
 trapper_add_package(zlib
     ${ZLIB_LOCATION}
@@ -61,7 +69,11 @@ target_link_libraries(${PROJECT_STEP} PUBLIC ${zlib_LIBRARIES})
 
 # ----------------------------------------------------------------------------------------------------
 
-set(LIBZIP_LOCATION "${LIBZIPPP_SOURCE_DIR}/libzippp/lib/libzip-1.8.0")
+#
+# libzip
+#
+
+set(LIBZIP_LOCATION "${LIBZIPPP_SOURCE_DIR}/lib/libzip-1.8.0")
 
 trapper_add_package(libzip
     ${LIBZIP_LOCATION}
@@ -104,4 +116,15 @@ target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
 
 # ----------------------------------------------------------------------------------------------------
 
-set(LIBZIPPP_LOCATION "${LIBZIPPP_SOURCE_DIR}/libzippp/lib/libzip-1.8.0")
+#
+# libzippp
+#
+
+set(LIBZIPPP_LOCATION ${LIBZIPPP_SOURCE_DIR})
+
+trapper_add_package(libzippp
+    ${LIBZIPPP_LOCATION}
+    NONE
+
+    VERBOSE
+    )
