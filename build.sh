@@ -1,12 +1,12 @@
 #!/bin/bash
 
-rm -rf cmake
+# rm -rf cmake
 
-rm -rf build
+# rm -rf build
 
-rm -rf .cache
-rm -rf prebuilt
-rm -rf external
+# rm -rf .cache
+# rm -rf prebuilt
+# rm -rf external
 
 # build default examples
 

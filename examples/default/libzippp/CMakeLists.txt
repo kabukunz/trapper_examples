@@ -93,9 +93,15 @@ set(PROJECT_STEP libzip_client)
 
 add_executable(${PROJECT_STEP} "${LIBZIP_LOCATION}/examples/in-memory.c")
 
+# adding zlib to libzip link libraries
+set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${zlib_LIBRARIES})
+
 get_target_property(libzip_INCLUDE_DIRS libzip::zip INTERFACE_INCLUDE_DIRECTORIES)
 
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
 
+# ----------------------------------------------------------------------------------------------------
+
+set(LIBZIPPP_LOCATION "${LIBZIPPP_SOURCE_DIR}/libzippp/lib/libzip-1.8.0")
