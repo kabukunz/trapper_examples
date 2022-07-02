@@ -105,14 +105,18 @@ set(PROJECT_STEP libzip_client)
 
 add_executable(${PROJECT_STEP} "${LIBZIP_LOCATION}/examples/in-memory.c")
 
-# adding zlib to libzip link libraries
+# adding zlib to libzip link libraries so it can be found
 set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${zlib_LIBRARIES})
 
-get_target_property(libzip_INCLUDE_DIRS libzip::zip INTERFACE_INCLUDE_DIRECTORIES)
+# get_target_property(libzip_INCLUDE_DIRS libzip::zip INTERFACE_INCLUDE_DIRECTORIES)
 
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
+
+# add libzip library to cmake prefix path so it can be found
+# get_target_property(libzip_LIBRARIES libzip::zip LOCATION)
+
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -121,9 +125,6 @@ target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
 #
 
 set(LIBZIPPP_LOCATION ${LIBZIPPP_SOURCE_DIR})
-
-# get findLIBZIP.CMake
-# list(APPEND CMAKE_MODULE_PATH "${LIBZIPPP_SOURCE_DIR}/cmake")
 
 trapper_add_package(libzippp
     ${LIBZIPPP_LOCATION}
@@ -135,18 +136,19 @@ trapper_add_package(libzippp
     VERBOSE
     )
 
-# set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/share/libzippp")
+# libzippp needs to find libzip
+list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
+# list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}/include")
+# list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}/lib")
+    
+set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/share/libzippp")
 
-# find_package(libzippp CONFIG 3.0 REQUIRED)
-# # find_package(libzippp 3.0 REQUIRED)
+find_package(libzippp CONFIG REQUIRED)
 
-# set(PROJECT_STEP libzippp_client)
+set(PROJECT_STEP libzippp_client)
 
-# add_executable(${PROJECT_STEP} "${LIBZIPPP_SOURCE_DIR}/tests/tests.cpp")
+add_executable(${PROJECT_STEP} "${LIBZIPPP_SOURCE_DIR}/tests/tests.cpp")
 
-# target_include_directories(${PROJECT_STEP} PUBLIC ${libzippp_INCLUDE_DIRS})
+target_include_directories(${PROJECT_STEP} PUBLIC ${libzippp_INCLUDE_DIRS})
 
-# target_link_libraries(${PROJECT_STEP} PRIVATE libzippp::libzippp)
-
-
-
+target_link_libraries(${PROJECT_STEP} PRIVATE libzippp::libzippp)

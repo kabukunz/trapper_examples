@@ -27,10 +27,6 @@ if(TRAPPER_BUILD_DIRECTIONAL_EXAMPLE)
     add_subdirectory(directional)
 endif()
 
-if(TRAPPER_BUILD_LIBZIP_EXAMPLE)
-    add_subdirectory(libzip)
-endif()
-
 if(TRAPPER_BUILD_LIBZIPPP_EXAMPLE)
     add_subdirectory(libzippp)
 endif()
