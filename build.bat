@@ -1,16 +1,10 @@
 
 @REM set TRAPPER_DIR=%CD%
 
-@REM rmdir /S /Q build
-@REM rmdir /S /Q -rf .mycache
-@REM rmdir /S /Q -rf mybuild
-@REM rmdir /S /Q -rf myprebuilt
-@REM rmdir /S /Q -rf myexternal
-
-@REM rmdir /S /Q -rf .cache
-@REM rmdir /S /Q -rf build
-@REM rmdir /S /Q -rf prebuilt
-@REM rmdir /S /Q -rf external
+rmdir /S /Q -rf .cache
+rmdir /S /Q -rf build
+rmdir /S /Q -rf prebuilt
+rmdir /S /Q -rf external
 
 @REM Build default examples
 
@@ -19,7 +13,8 @@
 @REM call build_dlib.bat
 @REM call build_polyscope.bat
 @REM .\examples\default\imgui\build.bat
-.\examples\default\pybind11\build.bat
+@REM .\examples\default\pybind11\build.bat
+.\examples\default\libzippp\build.bat
 
 @REM Build advanced examples
 
