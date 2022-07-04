@@ -33,11 +33,11 @@ trapper_add_package(libzippp
     VERBOSE
     )
 
+# source dir
 set(LIBZIPPP_SOURCE_DIR "${TRAPPER_SOURCE_DIR}")
 
-# libzippp needs to find zlib and libzip
+# append to cmake prefix path
 list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
-message(WARNING "CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH}")
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -57,27 +57,15 @@ trapper_add_package(ZLIB
     VERBOSE
     )
 
-# https://stackoverflow.com/questions/44487053/set-pkg-config-path-in-cmake
-# set(ENV{PKG_CONFIG_PATH} "${TRAPPER_INSTALL_DIR}/share/pkgconfig")
-
-# set(zlib_DIR "${TRAPPER_INSTALL_DIR}/lib/cmake/libzip")
-
-# https://stackoverflow.com/questions/29191855/what-is-the-proper-way-to-use-pkg-config-from-cmake
-# find_package(PkgConfig REQUIRED)
-
 find_package(ZLIB REQUIRED)
-
-# pkg_search_module(zlib REQUIRED zlib)
 
 set(PROJECT_STEP zlib_client)
 
 add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/minigzip.c")
 
 target_include_directories(${PROJECT_STEP} PUBLIC ${ZLIB_INCLUDE_DIRS})
-message(WARNING "ZLIB_INCLUDE_DIRS ${ZLIB_INCLUDE_DIRS}")
 
 target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
-message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -110,8 +98,6 @@ trapper_add_package(libzip
     VERBOSE
     )
 
-set(libzip_DIR "${TRAPPER_INSTALL_DIR}/lib/cmake/libzip")
-
 find_package(libzip CONFIG REQUIRED)
 
 set(PROJECT_STEP libzip_client)
@@ -124,7 +110,6 @@ set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${ZLIB_LIB
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
-
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -144,13 +129,6 @@ trapper_add_package(libzippp
 
     VERBOSE
     )
-
-# # libzippp needs to find libzip
-# list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
-    
-# FIXME: two different dirs on mac and win? 
-# set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/share/libzippp")
-set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/cmake/libzippp")
 
 find_package(libzippp CONFIG REQUIRED)
 
