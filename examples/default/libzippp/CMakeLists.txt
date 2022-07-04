@@ -47,10 +47,13 @@ message(WARNING "CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH}")
 
 set(ZLIB_LOCATION "${LIBZIPPP_SOURCE_DIR}/lib/zlib-1.2.12")
 
-trapper_add_package(zlib
+trapper_add_package(ZLIB
     ${ZLIB_LOCATION}
     NONE
 
+    PACKAGE_OPTIONS
+        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
+    
     VERBOSE
     )
 
@@ -62,17 +65,19 @@ trapper_add_package(zlib
 # https://stackoverflow.com/questions/29191855/what-is-the-proper-way-to-use-pkg-config-from-cmake
 # find_package(PkgConfig REQUIRED)
 
-find_package(zlib REQUIRED)
+find_package(ZLIB REQUIRED)
 
 # pkg_search_module(zlib REQUIRED zlib)
 
 set(PROJECT_STEP zlib_client)
 
-add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/example.c")
+add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/minigzip.c")
 
-target_include_directories(${PROJECT_STEP} PUBLIC ${zlib_INCLUDE_DIRS})
+target_include_directories(${PROJECT_STEP} PUBLIC ${ZLIB_INCLUDE_DIRS})
+message(WARNING "ZLIB_INCLUDE_DIRS ${ZLIB_INCLUDE_DIRS}")
 
-target_link_libraries(${PROJECT_STEP} PUBLIC ${zlib_LIBRARIES})
+target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
+message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -87,6 +92,7 @@ trapper_add_package(libzip
     NONE
 
     PACKAGE_OPTIONS
+        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
         -DBUILD_DOC=OFF
         -DBUILD_EXAMPLES=OFF
         -DBUILD_REGRESS=OFF
@@ -113,7 +119,7 @@ set(PROJECT_STEP libzip_client)
 add_executable(${PROJECT_STEP} "${LIBZIP_LOCATION}/examples/in-memory.c")
 
 # adding zlib to libzip link libraries so it can be found
-set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${zlib_LIBRARIES})
+set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${ZLIB_LIBRARIES})
 
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
@@ -133,6 +139,7 @@ trapper_add_package(libzippp
     NONE
 
     PACKAGE_OPTIONS
+        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
         -DLIBZIPPP_BUILD_TESTS=OFF
 
     VERBOSE

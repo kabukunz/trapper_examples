@@ -1,7 +1,7 @@
 
-del /S /Q .\build\CMakeCache.txt
+@REM del /S /Q .\build\CMakeCache.txt
 
-cmake -S . -B build ^
+cmake -S . -B build -G Ninja ^
 -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE ^
 -DCMAKE_BUILD_TYPE=Release ^
  ^
