@@ -47,7 +47,7 @@ list(APPEND CMAKE_PREFIX_PATH "${TRAPPER_INSTALL_DIR}")
 
 set(ZLIB_LOCATION "${LIBZIPPP_SOURCE_DIR}/lib/zlib-1.2.12")
 
-trapper_add_package(ZLIB
+trapper_add_package(zlib
     ${ZLIB_LOCATION}
     NONE
 
@@ -129,6 +129,11 @@ trapper_add_package(libzippp
 
     VERBOSE
     )
+
+# not the default position on Windows
+if (CMAKE_SYSTEM_NAME STREQUAL "WIN32")
+    set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/cmake/libzippp")
+endif()
 
 find_package(libzippp CONFIG REQUIRED)
 
