@@ -130,9 +130,11 @@ trapper_add_package(libzippp
     VERBOSE
     )
 
-# not the default position on Windows
+# config dir position changes on different systems
 if (CMAKE_SYSTEM_NAME STREQUAL "WIN32")
     set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/cmake/libzippp")
+else()
+    set(libzippp_DIR "${TRAPPER_INSTALL_DIR}/share/libzippp")
 endif()
 
 find_package(libzippp CONFIG REQUIRED)
