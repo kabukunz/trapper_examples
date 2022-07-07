@@ -77,7 +77,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_library(zlib_dll SHARED IMPORTED)
     set_property(TARGET zlib_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
     add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zlib_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:zlib_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
 endif()
 
 # ----------------------------------------------------------------------------------------------------
@@ -128,7 +128,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_library(zip_dll SHARED IMPORTED)
     set_property(TARGET zip_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zip.dll")
     add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zip_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
+        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:zip_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
 endif()
 
 # ----------------------------------------------------------------------------------------------------
