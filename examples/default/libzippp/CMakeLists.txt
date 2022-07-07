@@ -26,10 +26,15 @@ trapper_add_package(libzippp
     ${LIBZIPPP_LOCATION}
     NONE
 
+    PACKAGE_OPTIONS
+        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
+
     SKIP_CONFIGURE
     SKIP_BUILD
     SKIP_INSTALL
+
     SOURCE_DIR ${LIBZIPPP_SOURCE_DIR}
+
     VERBOSE
     )
 
@@ -52,7 +57,7 @@ trapper_add_package(zlib
     NONE
 
     PACKAGE_OPTIONS
-        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
+        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}        
     
     VERBOSE
     )
@@ -66,6 +71,14 @@ add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/minigzip.c")
 target_include_directories(${PROJECT_STEP} PUBLIC ${ZLIB_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
+
+# copy zlib.dll to target dir
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    add_library(zlib_dll SHARED IMPORTED)
+    set_property(TARGET zlib_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
+    add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zlib_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
+endif()
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -84,7 +97,6 @@ trapper_add_package(libzip
         -DBUILD_DOC=OFF
         -DBUILD_EXAMPLES=OFF
         -DBUILD_REGRESS=OFF
-        -DBUILD_SHARED_LIBS=OFF
         -DBUILD_TOOLS=OFF        
         -DENABLE_BZIP2=OFF  
         -DENABLE_COMMONCRYPTO=OFF  
@@ -110,6 +122,14 @@ set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${ZLIB_LIB
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
+
+# copy zip.dll to target dir
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    add_library(zip_dll SHARED IMPORTED)
+    set_property(TARGET zip_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zip.dll")
+    add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zip_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
+endif()
 
 # ----------------------------------------------------------------------------------------------------
 
