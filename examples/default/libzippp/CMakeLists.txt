@@ -27,7 +27,7 @@ trapper_add_package(libzippp
     NONE
 
     PACKAGE_OPTIONS
-        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
+        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
 
     SKIP_CONFIGURE
     SKIP_BUILD
@@ -57,7 +57,7 @@ trapper_add_package(zlib
     NONE
 
     PACKAGE_OPTIONS
-        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}        
+        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
     
     VERBOSE
     )
@@ -93,7 +93,7 @@ trapper_add_package(libzip
     NONE
 
     PACKAGE_OPTIONS
-        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
+        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
         -DBUILD_DOC=OFF
         -DBUILD_EXAMPLES=OFF
         -DBUILD_REGRESS=OFF
@@ -144,7 +144,7 @@ trapper_add_package(libzippp
     NONE
 
     PACKAGE_OPTIONS
-        -DCMAKE_BUILD_TYPE=${DCMAKE_BUILD_TYPE}
+        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
         -DLIBZIPPP_BUILD_TESTS=OFF
 
     VERBOSE
