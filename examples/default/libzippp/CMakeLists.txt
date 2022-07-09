@@ -9,6 +9,9 @@ file(DOWNLOAD https://raw.githubusercontent.com/kabukunz/trapper/main/Trapper.cm
 
 include(Trapper)
 
+# let's get in those dlls
+include(AddRuntimeDependencies)
+
 # ----------------------------------------------------------------------------------------------------
 
 # libzippp: download the special windows package with zlib and libzip dependencies, build and install them,
@@ -73,13 +76,7 @@ target_include_directories(${PROJECT_STEP} PUBLIC ${ZLIB_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
 message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
 
-# copy zlib.dll to target dir
-if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    add_library(zlib_dll SHARED IMPORTED)
-    set_property(TARGET zlib_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
-    add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zlib_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
-endif()
+addRuntimeDependenciesLocation(${PROJECT_STEP} zlib_manual "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -117,21 +114,11 @@ set(PROJECT_STEP libzip_client)
 
 add_executable(${PROJECT_STEP} "${LIBZIP_LOCATION}/examples/in-memory.c")
 
-# adding zlib to libzip link libraries so it can be found
-set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${ZLIB_LIBRARIES})
-message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
-
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
 
-# copy zip.dll to target dir
-if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    add_library(zip_dll SHARED IMPORTED)
-    set_property(TARGET zip_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zip.dll")
-    add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zip_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
-endif()
+addRuntimeDependencies(${PROJECT_STEP} libzip::zip)
 
 # ----------------------------------------------------------------------------------------------------
 
