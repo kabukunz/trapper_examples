@@ -71,13 +71,14 @@ add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/minigzip.c")
 target_include_directories(${PROJECT_STEP} PUBLIC ${ZLIB_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
+message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
 
 # copy zlib.dll to target dir
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_library(zlib_dll SHARED IMPORTED)
     set_property(TARGET zlib_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
     add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:zlib_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zlib_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
 endif()
 
 # ----------------------------------------------------------------------------------------------------
@@ -118,6 +119,7 @@ add_executable(${PROJECT_STEP} "${LIBZIP_LOCATION}/examples/in-memory.c")
 
 # adding zlib to libzip link libraries so it can be found
 set_target_properties(libzip::zip PROPERTIES INTERFACE_LINK_LIBRARIES ${ZLIB_LIBRARIES})
+message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
 
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
@@ -128,7 +130,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_library(zip_dll SHARED IMPORTED)
     set_property(TARGET zip_dll PROPERTY IMPORTED_LOCATION "${TRAPPER_INSTALL_DIR}/bin/zip.dll")
     add_custom_command(TARGET ${PROJECT_STEP} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:zip_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:zip_dll> $<TARGET_FILE_DIR:${PROJECT_STEP}>)
 endif()
 
 # ----------------------------------------------------------------------------------------------------
