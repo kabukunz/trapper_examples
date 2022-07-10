@@ -76,6 +76,8 @@ target_include_directories(${PROJECT_STEP} PUBLIC ${ZLIB_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
 message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
 
+# NOTE: windows creates .dll and .lib when creating shared libraries. 
+# The latter is returned, so the former must be manually picked 
 addRuntimeDependenciesLocation(${PROJECT_STEP} zlib_manual "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
 
 # ----------------------------------------------------------------------------------------------------
@@ -92,6 +94,7 @@ trapper_add_package(libzip
 
     PACKAGE_OPTIONS
         -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+        -DBUILD_SHARED_LIBS=ON
         -DBUILD_DOC=OFF
         -DBUILD_EXAMPLES=OFF
         -DBUILD_REGRESS=OFF
