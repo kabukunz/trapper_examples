@@ -1,14 +1,7 @@
 Trapper.cmake
 
-build
-external
-
-.mycache
-mybuild
-myprebuilt
-myexternal
-
 .cache
+bin
 build
 prebuilt
 external

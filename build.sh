@@ -4,11 +4,9 @@
 # clean the build
 #
 
-rm -rf cmake
-
-rm -rf build
-
 rm -rf .cache
+rm -rf bin
+rm -rf build
 rm -rf prebuilt
 rm -rf external
 

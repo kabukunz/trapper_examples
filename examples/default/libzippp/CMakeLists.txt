@@ -74,11 +74,12 @@ add_executable(${PROJECT_STEP} "${ZLIB_LOCATION}/test/minigzip.c")
 target_include_directories(${PROJECT_STEP} PUBLIC ${ZLIB_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
-message(WARNING "ZLIB_LIBRARIES ${ZLIB_LIBRARIES}")
+
+set_target_properties(${PROJECT_STEP} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
 # NOTE: windows creates .dll and .lib when creating shared libraries. 
-# The latter is returned, so the former must be manually picked 
-addRuntimeDependenciesLocation(${PROJECT_STEP} zlib_manual "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
+# In a typical cmake for windows error, the latter is wrongly returned, so the former must be manually picked
+addRuntimeDependenciesLocation(${PROJECT_STEP} zlib_trapper "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
 
 # ----------------------------------------------------------------------------------------------------
 
@@ -121,6 +122,8 @@ target_include_directories(${PROJECT_STEP} PUBLIC ${libzip_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PUBLIC libzip::zip)
 
+set_target_properties(${PROJECT_STEP} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
+
 addRuntimeDependencies(${PROJECT_STEP} libzip::zip)
 
 # ----------------------------------------------------------------------------------------------------
@@ -158,3 +161,5 @@ add_executable(${PROJECT_STEP} "${LIBZIPPP_SOURCE_DIR}/tests/tests.cpp")
 target_include_directories(${PROJECT_STEP} PUBLIC ${libzippp_INCLUDE_DIRS})
 
 target_link_libraries(${PROJECT_STEP} PRIVATE libzippp::libzippp)
+
+set_target_properties(${PROJECT_STEP} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
