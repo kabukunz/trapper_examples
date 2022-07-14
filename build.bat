@@ -2,6 +2,7 @@
 @REM set TRAPPER_DIR=%CD%
 
 rmdir /S /Q -rf .cache
+rmdir /S /Q -rf bin
 rmdir /S /Q -rf build
 rmdir /S /Q -rf prebuilt
 rmdir /S /Q -rf external
