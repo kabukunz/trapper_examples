@@ -77,8 +77,10 @@ target_link_libraries(${PROJECT_STEP} PUBLIC ${ZLIB_LIBRARIES})
 
 set_target_properties(${PROJECT_STEP} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin")
 
-# NOTE: windows creates .dll and .lib when creating shared libraries. 
-# In a typical cmake for windows error, the latter is wrongly returned, so the former must be manually picked
+# NOTE: windows creates .dll and .lib when creating shared libraries
+# In a typical cmake for windows error, the .lib is wrongly returned
+# in place of .dll, so the .dll needs to be chosen manually for copying
+
 addRuntimeDependenciesLocation(${PROJECT_STEP} zlib_trapper "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
 
 # ----------------------------------------------------------------------------------------------------
