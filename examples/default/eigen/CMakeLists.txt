@@ -35,10 +35,6 @@ add_library(${PROJECT_NAME} STATIC lib.cpp)
 # set eigen include dir
 target_include_directories(${PROJECT_NAME} PUBLIC ${Eigen_DIR})
 
-# # props
-# set_target_properties(${PROJECT_NAME} PROPERTIES
-#     OUTPUT_NAME ${PROJECT_NAME}lib)
-
 # exe
 add_executable(${PROJECT_NAME}_exe main.cpp)
 
