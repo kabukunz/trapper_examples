@@ -21,7 +21,8 @@ rm -rf external
 # ./examples/default/pybind11/build.sh
 # ./examples/default/nanoflann/build.sh
 # ./examples/default/directional/build.sh
-./examples/default/libzippp/build.sh
+# ./examples/default/libzippp/build.sh
+./examples/default/eigen/build.sh
 
 #
 # build advanced examples

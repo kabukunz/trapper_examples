@@ -30,3 +30,7 @@ endif()
 if(TRAPPER_BUILD_LIBZIPPP_EXAMPLE)
     add_subdirectory(libzippp)
 endif()
+
+if(TRAPPER_BUILD_EIGEN_EXAMPLE)
+    add_subdirectory(eigen)
+endif()
