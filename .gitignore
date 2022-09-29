@@ -6,6 +6,8 @@ build
 prebuilt
 external
 
+somedata*
+
 *.zip
 *.tar.gz
 *.tar
