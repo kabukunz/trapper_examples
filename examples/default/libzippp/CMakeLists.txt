@@ -65,6 +65,7 @@ trapper_add_package(zlib
     VERBOSE
     )
 
+# cmake --help-module FindZLIB
 find_package(ZLIB REQUIRED)
 
 set(PROJECT_STEP zlib_client)
@@ -81,7 +82,27 @@ set_target_properties(${PROJECT_STEP} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMA
 # In a typical cmake for windows error, the .lib is wrongly returned
 # in place of .dll, so the .dll needs to be chosen manually for copying
 
-addRuntimeDependenciesLocation(${PROJECT_STEP} zlib_trapper "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
+# https://cmake.org/cmake/help/latest/prop_tgt/IMPORTED_LOCATION.html
+# https://cmake.org/cmake/help/latest/prop_tgt/IMPORTED_IMPLIB.html#prop_tgt:IMPORTED_IMPLIB
+
+get_property(imported_location TARGET ZLIB::ZLIB PROPERTY IMPORTED_LOCATION_${CMAKE_BUILD_TYPE})
+message("zlib imported_location before ${imported_location}")
+
+# shows: 
+# zlib imported_configs RELEASE
+# zlib imported_location C:/Users/kabukunz/Developer/Tools/trapper_examples/prebuilt/lib/zlib.lib
+
+# fix
+set_target_properties(ZLIB::ZLIB PROPERTIES IMPORTED_LOCATION_${CMAKE_BUILD_TYPE} "${TRAPPER_INSTALL_DIR}/bin/zlib.dll")
+
+get_property(imported_location TARGET ZLIB::ZLIB PROPERTY IMPORTED_LOCATION_${CMAKE_BUILD_TYPE})
+message("zlib imported_location after ${imported_location}")
+
+# shows: 
+# zlib imported_configs RELEASE
+# zlib imported_location C:/Users/kabukunz/Developer/Tools/trapper_examples/prebuilt/bin/zlib.dll
+
+addRuntimeDependencies(${PROJECT_STEP} ZLIB::ZLIB)
 
 # ----------------------------------------------------------------------------------------------------
 

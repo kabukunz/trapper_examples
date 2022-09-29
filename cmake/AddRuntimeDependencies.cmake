@@ -16,13 +16,3 @@ function(addRuntimeDependencies target dependency)
             $<TARGET_FILE_DIR:${target}>)
     endif()
 endfunction()
-
-function(addRuntimeDependenciesLocation target dependency location)
-    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-        add_library(${dependency} SHARED IMPORTED GLOBAL)
-        set_property(TARGET ${dependency} PROPERTY IMPORTED_LOCATION ${location})
-        add_custom_command(TARGET ${target} POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:${dependency}> $<TARGET_FILE_DIR:${target}>)
-        message("Copying dependencies: ${dependency}")
-    endif()
-endfunction()

@@ -15,7 +15,7 @@ powershell -command "Expand-Archive eigen-3.3.9.zip external"
 
 cmake -B build -G "Ninja" ^
 -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=TRUE ^
--DCMAKE_BUILD_TYPE=Release ^
+-DCMAKE_BUILD_TYPE=RELEASE ^
 -DTRAPPER_BUILD_DEFAULT_EXAMPLES=OFF ^
 -DTRAPPER_BUILD_ADVANCED_EXAMPLES=OFF ^
  ^
