@@ -9,14 +9,11 @@ rmdir /S /Q -rf external
 
 @REM Build default examples
 
-@REM .\examples\default\mmg\build.bat
-@REM call build_embree.bat
-@REM call build_dlib.bat
-@REM call build_polyscope.bat
+.\examples\default\mmg\build.bat
 @REM .\examples\default\imgui\build.bat
 @REM .\examples\default\pybind11\build.bat
 @REM .\examples\default\nanoflann\build.bat
-.\examples\default\libzippp\build.bat
+@REM .\examples\default\libzippp\build.bat
 
 @REM Build advanced examples
 
