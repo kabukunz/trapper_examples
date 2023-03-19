@@ -18,14 +18,32 @@ include(Trapper)
 
 # MMG: download, build, and use installed tool
 
+# reset options
+set(PACKAGE_OPTIONS "")
+
+# tool options
+list(APPEND PACKAGE_OPTIONS -D CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
+list(APPEND PACKAGE_OPTIONS -D BUILD=MMG2D)
+list(APPEND PACKAGE_OPTIONS -D BUILD_TESTING=OFF)
+list(APPEND PACKAGE_OPTIONS -D TEST_LIBMMG2D=OFF)
+list(APPEND PACKAGE_OPTIONS -D USE_SCOTCH=OFF)
+list(APPEND PACKAGE_OPTIONS -D USE_ELAS=OFF)
+list(APPEND PACKAGE_OPTIONS -D USE_VTK=OFF)
+
+# build shared libs only because of LGPL
+list(APPEND PACKAGE_OPTIONS -D BUILD_SHARED_LIBS=ON) 
+list(APPEND PACKAGE_OPTIONS -D LIBMMG2D_STATIC=OFF)
+list(APPEND PACKAGE_OPTIONS -D LIBMMG2D_SHARED=ON)
+
 trapper_add_package(
     mmg
     https://github.com/kabukunz/mmg.git
-    integration_v5.7.0
+    integration_v570
 
     VERBOSE
 
     SOURCE_DIR "${CMAKE_SOURCE_DIR}/external"
+    PACKAGE_OPTIONS ${PACKAGE_OPTIONS}
     )
 
 # ----------------------------------------------------------------------------------------------------
