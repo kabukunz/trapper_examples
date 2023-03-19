@@ -21,7 +21,7 @@ include(Trapper)
 trapper_add_package(
     mmg
     https://github.com/kabukunz/mmg.git
-    integration
+    v5.7.0
 
     VERBOSE
 
@@ -30,20 +30,20 @@ trapper_add_package(
 
 # ----------------------------------------------------------------------------------------------------
 
-# # mmg needs source dir for cmake scripts
-# list(APPEND CMAKE_MODULE_PATH "${TRAPPER_SOURCE_DIR}/cmake/tools")
+# mmg needs source dir for cmake scripts
+list(APPEND CMAKE_MODULE_PATH "${TRAPPER_SOURCE_DIR}/cmake/tools")
 
-# # set mmg dir from prebuilt
-# set(MMG_DIR ${TRAPPER_INSTALL_DIR} CACHE STRING "MMG DIR")
+# set mmg dir from prebuilt
+set(MMG_DIR ${TRAPPER_INSTALL_DIR} CACHE STRING "MMG DIR")
 
-# find_package(MMG2D REQUIRED)
+find_package(MMG2D REQUIRED)
 
-# if(MMG2D_FOUND)
-#     message(STATUS "MMG2D LIBRARY DIRS = ${MMG2D_LIBRARY_DIRS}")
-# endif()
+if(MMG2D_FOUND)
+    message(STATUS "MMG2D LIBRARY DIRS = ${MMG2D_LIBRARY_DIRS}")
+endif()
 
-# add_executable(${PROJECT_NAME} ${TRAPPER_SOURCE_DIR}/libexamples/mmg2d/adaptation_example0/example0_b/main.c)
+add_executable(${PROJECT_NAME} ${TRAPPER_SOURCE_DIR}/libexamples/mmg2d/adaptation_example0/example0_b/main.c)
 
-# target_include_directories(${PROJECT_NAME} PUBLIC ${MMG2D_INCLUDE_DIRS})
+target_include_directories(${PROJECT_NAME} PUBLIC ${MMG2D_INCLUDE_DIRS})
 
-# target_link_libraries(${PROJECT_NAME} PUBLIC ${MMG2D_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${MMG2D_LIBRARIES})
