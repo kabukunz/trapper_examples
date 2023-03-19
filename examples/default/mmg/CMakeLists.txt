@@ -60,15 +60,14 @@ list(APPEND CMAKE_MODULE_PATH "${MMG_SRC}/cmake/tools")
 
 # # set MMG helper dirs
 set(MMG_INCDIR "${MMG_DIR}/include")
-# set(MMG_LIBDIR "${MMG_DIR}/lib")
-# set(MMG_BINDIR "${MMG_DIR}/bin")
+set(MMG_LIBDIR "${MMG_DIR}/lib")
+set(MMG_BINDIR "${MMG_DIR}/bin")
 
 set(MMG_DIR "${TRAPPER_INSTALL_DIR}/lib/cmake/mmg")
-
 find_package(MMG CONFIG REQUIRED)
 
-message(STATUS "MMG2D_INCLUDE_DIRS: " ${MMG_INCLUDE_DIRS})
-message(STATUS "MMG2D_LIBRARIES: " ${MMG_LIBRARIES})
+message(STATUS "MMG_INCLUDE_DIRS: " ${MMG_INCLUDE_DIRS})
+message(STATUS "MMG_LIBRARIES: " ${MMG_LIBRARIES})
 
 if(WIN32)
     add_library(MMG2D_DLL SHARED IMPORTED)
@@ -82,7 +81,7 @@ endif()
 add_executable(mmg2dclient "${MMG_SRC}/libexamples/mmg2d/adaptation_example0/example0_a/main.c")
 
 # include dirs
-target_include_directories(mmg2dclient PUBLIC ${MMG2D_INCLUDE_DIRS})
+target_include_directories(mmg2dclient PUBLIC ${MMG_INCLUDE_DIRS})
 
 # link library
 target_link_libraries(mmg2dclient PUBLIC Mmg::libmmg2d_so)
