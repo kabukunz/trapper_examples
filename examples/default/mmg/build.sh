@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# 
-# MMG
-# 
-
 cmake -S . -B build \
 -DTRAPPER_BUILD_DEFAULT_EXAMPLES=OFF \
 -DTRAPPER_BUILD_ADVANCED_EXAMPLES=OFF \
@@ -24,6 +20,3 @@ cmake -S . -B build \
 -DUSE_VTK=OFF
 
 cmake --build build
-
-
-
