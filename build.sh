@@ -14,7 +14,7 @@ rm -rf external
 # build default examples
 #
 
-# ./examples/default/mmg/build.sh
+./examples/default/mmg/build.sh
 # ./examples/default/embree/build.sh
 # ./examples/default/dlib/build.sh
 # ./examples/default/imgui/build.sh
@@ -23,7 +23,7 @@ rm -rf external
 # ./examples/default/directional/build.sh
 # ./examples/default/libzippp/build.sh
 # ./examples/default/eigen/build.sh
-./examples/default/polyscope/build.sh
+# ./examples/default/polyscope/build.sh
 
 #
 # build advanced examples
